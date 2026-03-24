@@ -4,4 +4,5 @@ data/
 *.egg-info
 *.npz
 *.txt
+!requirements.txt
 __pycache__/
