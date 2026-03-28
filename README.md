@@ -117,6 +117,7 @@ Hoenig, S., Grover, A., Neri, P., Surdez, D., & Boeva, V. (2026).
 bioRxiv. https://doi.org/10.64898/2026.03.20.713211
 ```
 
+Bibtex: 
 ```bibtex
 @article{hoenig2026chiron3d,
   title   = {Chiron3D: an interpretable deep learning framework for understanding the DNA code of chromatin looping},
