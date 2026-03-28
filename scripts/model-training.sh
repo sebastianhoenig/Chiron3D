@@ -8,11 +8,6 @@
 #SBATCH --time=2-00:00:00
 #SBATCH --mem=64G
 
-if [ $# -eq 0 ]; then
-  echo "Provide a flag name to run the script. Example: sbatch model-training.sh --gatc1hot"
-  exit 1
-fi
-
 # Activate conda
 source ~/.bashrc
 conda activate ENV_NAME_HERE
@@ -68,6 +63,4 @@ python3 -m src.models.training.train \
   --batch-size $BATCH_SIZE \
   $DDP_DISABLED \
   --num-workers $NUM_WORKERS \
-  --borzoi \
-  --lora \
-  --use_groupnorm
+  --borzoi

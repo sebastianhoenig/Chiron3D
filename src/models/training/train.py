@@ -43,9 +43,7 @@ def init_parser():
 
     # If using backbone for embeddings
     parser.add_argument('--borzoi', action='store_true', help='Use borzoi backbone for embeddings')
-    parser.add_argument('--lora', action='store_true')
 
-    parser.add_argument('--use_groupnorm', action='store_true')
 
     args = parser.parse_args(args=None if sys.argv[1:] else ['--help'])
     return args

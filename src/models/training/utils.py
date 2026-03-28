@@ -10,18 +10,15 @@ def replace_bn_with_groupnorm(model):
     """
     for name, module in model.named_children():
         if "borzoi" in name:
-            print(f"[DEBUG] Not changing this one: {name}")
             continue
         if isinstance(module, nn.BatchNorm1d):
             C = module.num_features
             gn = nn.GroupNorm(num_groups=1, num_channels=C)
             setattr(model, name, gn)
-            print(f"[DEBUG] Set BN1d to GN1d: {name}")
         elif isinstance(module, nn.BatchNorm2d):
             C = module.num_features
             gn = nn.GroupNorm(num_groups=1, num_channels=C)
             setattr(model, name, gn)
-            print(f"[DEBUG] Set BN2d to GN2d: {name}")
         else:
             replace_bn_with_groupnorm(module)
 
@@ -66,14 +63,10 @@ def set_lora(model):
 def get_model(args):
     if args.borzoi:
         model = Chiron3D(mid_hidden=128, local=args.local)
+        replace_bn_with_groupnorm(model)
+        model = set_lora(model)
     else:
         model = ConvTransModelSmall(mid_hidden=128, num_genomic_features=args.num_genom_feat)
-
-    if args.use_groupnorm:
-        replace_bn_with_groupnorm(model)
-
-    if args.lora:
-        model = set_lora(model)
 
     return model
 
