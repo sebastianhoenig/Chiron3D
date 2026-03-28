@@ -60,13 +60,6 @@ All commands below are intended to be run from the repository root.
 
 ---
 
-### 2. Replace the current “Training and evaluation” section entirely
-
-Right now it only mentions the two SLURM scripts. But the actual scripts already call the Python modules directly, so the README should document those module commands first. :contentReference[oaicite:3]{index=3}
-
-I would replace that section with:
-
-```md
 ## Training and evaluation
 
 Chiron3D can be run directly from the command line. The SLURM scripts in `scripts/` are optional wrappers for cluster usage.
@@ -121,7 +114,7 @@ For SLURM-based cluster runs, example wrappers are provided in:
 
 These scripts are examples for our internal cluster setup and may need adaptation for your environment (e.g. conda environment name, absolute repository path, GPU partition, and resource requests).
 
-## Training and evaluation
+### GPU configuration
 
 In on our experiments, we used 4 × NVIDIA RTX 4090 or 3090 with 24GB of memory for training. Convergence then takes about one day. For evaluation (across three test chromosomes), 1 × NVIDIA RTX 4090 or 3090 with 24GB completes within an hour.
 
