@@ -33,20 +33,6 @@ data/
   windows_hg19.bed            # 524,288 bp windows tiled with 50 kb stride
 ```
 
-## Setup
-
-Download and unpack the Zenodo archive so that the repository root has the following layout:
-
-data/
-  A673_WT_CTCF_5000.cool
-  borzoi/
-  chiron-model.ckpt
-  chromosomes/
-  ctcf/
-  extruding_loops.csv
-  stable_loops.csv
-  windows_hg19.bed
-
 Create a Python environment and install the package in editable mode:
 
 ```bash
