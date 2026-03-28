@@ -4,7 +4,6 @@ import argparse
 import pytorch_lightning as pl
 import pytorch_lightning.callbacks as callbacks
 from src.models.training.module import TrainModule
-from src.models.evaluation.eval import run_test
 torch.serialization.add_safe_globals([argparse.Namespace])
 
 
@@ -78,7 +77,6 @@ def init_training(args):
 
     trainloader = pl_module.get_dataloader(args, 'train')
     valloader = pl_module.get_dataloader(args, 'val')
-    testloader = pl_module.get_dataloader(args, 'test')
 
     if args.ckpt_path:
         print(f"Resuming from checkpoint: {args.ckpt_path}")
@@ -89,13 +87,8 @@ def init_training(args):
     best_ckpt_path = checkpoint_callback.best_model_path
     if best_ckpt_path:
         print(f"Training finished. Best checkpoint (lowest val_loss) is:\n {best_ckpt_path}")
-        best_model = TrainModule.load_from_checkpoint(best_ckpt_path, hparams=args)
-        best_model.freeze()
-        metrics_dict = run_test(best_model, testloader)
-
-        csv_logger.log_metrics(metrics_dict, step=0)
     else:
-        print("[DEBUG]: No best checkpoint found for evaluation.")
+        print("[DEBUG]: No best checkpoint found.")
 
 
 def get_trainer(args, all_loggers, early_stop_callback, checkpoint_callback, lr_monitor):
