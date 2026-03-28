@@ -62,7 +62,7 @@ python3 -m src.models.training.train \
   --num-genom-feat 0 \
   --patience 7 \
   --max-epochs 25 \
-  --save-top-n 25 \
+  --save-top-n 1 \
   --num-gpu 4 \
   --batch-size 4 \
   --ddp-disabled \
